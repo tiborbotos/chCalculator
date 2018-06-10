@@ -1,49 +1,30 @@
-<form class="mat-typography">
-  <div>
-    <mat-form-field>
-      <mat-select name="mealType" placeholder="Étkezés" [(ngModel)]="mealType" (selectionChange)="onSelect($event)">
-        <mat-option *ngFor="let meal of meals" [value]="meal.value">
-          {{ meal.viewValue }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <div class="meal-hint" *ngIf="selectedMeal">Összesen {{sumCh}} g szénhidrát {{selectedMeal.hint}}</div>
-  </div>
+<div class="container"
+     [class.is-mobile]="mobileQuery.matches">
 
-  <div *ngIf="selectedMeal">
-    <div>
-      <mat-form-field [ngClass]="{'half': doubleCh}">
-        <input name="slowCh" matInput placeholder="Bevihető LASSÚ szénhidrát" [(ngModel)]="goalSlowCh">
-      </mat-form-field>
+  <mat-toolbar class="toolbar" color="primary">
+    <mat-toolbar-row>
+      <button mat-icon-button (click)="snav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>CH-Calculator</span>
+      <span class="header-spacer"></span>
+      <!--<mat-icon>info_outline</mat-icon>-->
+    </mat-toolbar-row>
+  </mat-toolbar>
 
-      <mat-form-field class="half" *ngIf="doubleCh">
-        <input name="quickCh" matInput placeholder="Bevihető GYORS szénhidrát" [(ngModel)]="goalQuickCh">
-      </mat-form-field>
-    </div>
+  <mat-sidenav-container class="sidenav-container"
+                         [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+                 [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+      <mat-nav-list>
+        <a [class.active-mode]="mode === 0" mat-list-item (click)="mode=0">160g diéta</a>
+        <!--<a [class.active-mode]="mode === 1" mat-list-item (click)="mode=1">Adag kiszámolás</a>-->
+      </mat-nav-list>
+    </mat-sidenav>
 
-    <p class="heading1">100g tartalmaz...</p>
-    <div>
-      <mat-form-field [ngClass]="{'half': doubleCh}">
-        <input name="mealSlowCh" matInput placeholder="Lassú CH" [(ngModel)]="slowChPer100">
-      </mat-form-field>
-
-      <mat-form-field class="half" *ngIf="doubleCh">
-        <input name="mealQuickCh" matInput placeholder="Gyors CH" [(ngModel)]="quickChPer100">
-      </mat-form-field>
-    </div>
-
-    <p class="heading2">Ennyit egyél</p>
-    <div class="result">
-      <mat-form-field [ngClass]="{'half': doubleCh}">
-        <input matInput disabled [value]="resultSlowCh">
-      </mat-form-field>
-
-      <mat-form-field class="half" *ngIf="doubleCh">
-        <input matInput disabled [value]="resultQuickCh">
-      </mat-form-field>
-    </div>
-
-  </div>
-
-
-</form>
+    <mat-sidenav-content>
+      <app-ch-calculator *ngIf="mode === 0"></app-ch-calculator>
+      <!--<app-ch-calculator *ngIf="mode === 1"></app-ch-calculator>-->
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

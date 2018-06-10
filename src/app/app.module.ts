@@ -1,15 +1,23 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import {MatFormFieldModule, MatInputModule, MatSelectModule, MatSliderModule} from '@angular/material';
+import {
+  MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule, MatListModule, MatNavList, MatSelectModule, MatSidenavModule,
+  MatSliderModule,
+  MatToolbarModule
+} from '@angular/material';
 
 import { AppComponent } from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule} from '@angular/forms';
+import { ChCalculatorComponent } from './ch-calculator/ch-calculator.component';
+import { RationCalculatorComponent } from './ration-calculator/ration-calculator.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ChCalculatorComponent,
+    RationCalculatorComponent
   ],
   imports: [
     BrowserModule,
@@ -18,7 +26,12 @@ import {FormsModule} from '@angular/forms';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    MatSliderModule
+    MatSliderModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

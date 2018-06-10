@@ -1,37 +1,35 @@
-@media only screen and (min-width: 600px) {
-  form {
-    margin-left: 20%;
-    margin-right: 20%;
-  }
+.header-spacer {
+  flex: 1 1 auto;
 }
 
-form mat-form-field {
-  width: calc(100% - 20px);
-  padding: 0 10px;
-}
-form mat-form-field.half {
-  width: calc(50% - 20px);
+.container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
-.meal-hint {
-  padding: 0px 10px 30px;
-  margin-top: -10px;
-  color: #777;
+.is-mobile .toolbar {
+  position: fixed;
+  /* Make sure the toolbar will stay on top of the content as it scrolls past. */
+  z-index: 2;
+}
+
+.sidenav-container {
+  /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
+     causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
+  flex: 1;
+}
+
+.is-mobile .sidenav-container {
+  /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
+     `<body>` to be our scrolling element for mobile layouts. */
+  flex: 1 0 auto;
+}
+
+.active-mode {
   font-weight: bold;
-}
-
-p {
-  padding: 20px 10px 0;
-}
-
-.heading1 {
-  font-size: 1.2rem;
-  margin-bottom: 5px;
-}
-.heading2 {
-  font-size: 1.2rem;
-  margin-bottom: 5px;
-}
-.result input {
-  color: #222;
 }

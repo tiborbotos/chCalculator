@@ -1,0 +1,53 @@
+<form class="mat-typography">
+  <div class="meal-type-container">
+    <div>
+      <mat-form-field [class.half]="selectedMeal">
+        <mat-select name="mealType" placeholder="Étkezés" [(ngModel)]="mealType" (selectionChange)="onSelect($event)">
+          <mat-option *ngFor="let meal of meals" [value]="meal.value">
+            {{ meal.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field *ngIf="selectedMeal" [class.half]="selectedMeal">
+        <input matInput disabled [value]="'Összesen: ' + sumCh + 'g'">
+      </mat-form-field>
+    </div>
+
+    <!--<div class="meal-hint" *ngIf="selectedMeal"> {{selectedMeal.hint}} g szénhidrát </div>-->
+
+    <div *ngIf="selectedMeal">
+      <mat-form-field [ngClass]="{'half': doubleCh}">
+        <input name="slowCh" matInput placeholder="Bevihető LASSÚ szénhidrát" [(ngModel)]="goalSlowCh">
+      </mat-form-field>
+
+      <mat-form-field class="half" *ngIf="doubleCh">
+        <input name="quickCh" matInput placeholder="Bevihető GYORS szénhidrát" [(ngModel)]="goalQuickCh">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div *ngIf="selectedMeal">
+    <p class="heading1">100g tartalmaz</p>
+    <div>
+      <mat-form-field [ngClass]="{'half': doubleCh}">
+        <input name="mealSlowCh" matInput placeholder="Lassú szénhidrát" [(ngModel)]="slowChPer100">
+      </mat-form-field>
+
+      <mat-form-field class="half" *ngIf="doubleCh">
+        <input name="mealQuickCh" matInput placeholder="Gyors szénhidrát" [(ngModel)]="quickChPer100">
+      </mat-form-field>
+    </div>
+
+    <p class="heading1" *ngIf="resultSlowCh">Ennyit egyél</p>
+    <div class="result" *ngIf="resultSlowCh">
+      <mat-form-field [ngClass]="{'half': doubleCh}">
+        <input matInput disabled [value]="resultSlowCh">
+      </mat-form-field>
+
+      <mat-form-field class="half" *ngIf="doubleCh">
+        <input matInput disabled [value]="resultQuickCh">
+      </mat-form-field>
+    </div>
+
+  </div>
+</form>
