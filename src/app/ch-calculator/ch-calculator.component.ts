@@ -47,13 +47,13 @@ export class ChCalculatorComponent {
   get resultSlowCh() {
     const goalSlowCh = parseFloat(this.goalSlowCh),
       slowChPer100 = parseFloat(this.slowChPer100);
-    return (slowChPer100 && goalSlowCh) ? Math.round((goalSlowCh * 100) / slowChPer100) : '';
+    return (slowChPer100 && goalSlowCh) ? Math.round((goalSlowCh * 100) / slowChPer100) + 'g' : '';
   }
 
   get resultQuickCh() {
     const goalQuickCh = parseFloat(this.goalQuickCh),
       quickChPer100 = parseFloat(this.quickChPer100);
-    return (quickChPer100 && goalQuickCh) ? Math.round((goalQuickCh * 100) / quickChPer100) : '';
+    return (quickChPer100 && goalQuickCh) ? Math.round((goalQuickCh * 100) / quickChPer100) + 'g' : '';
   }
 
   onSelect(value) {

@@ -13,22 +13,29 @@
       </mat-form-field>
     </div>
 
-    <!--<div class="meal-hint" *ngIf="selectedMeal"> {{selectedMeal.hint}} g szénhidrát </div>-->
-
-    <div *ngIf="selectedMeal">
-      <mat-form-field [ngClass]="{'half': doubleCh}">
-        <input name="slowCh" matInput placeholder="Bevihető LASSÚ szénhidrát" [(ngModel)]="goalSlowCh">
-      </mat-form-field>
-
-      <mat-form-field class="half" *ngIf="doubleCh">
-        <input name="quickCh" matInput placeholder="Bevihető GYORS szénhidrát" [(ngModel)]="goalQuickCh">
-      </mat-form-field>
+    <p class="heading1" *ngIf="selectedMeal">Bevihető szénhidrát</p>
+    <div class="goal-ch-container input-panel" *ngIf="selectedMeal">
+      <div [class.half]="doubleCh">
+        <div class="slider">
+          <span>Lassú</span>
+          <mat-slider name="slowCh" [step]="1" [tickInterval]="10" [thumbLabel]="true" [(ngModel)]="goalSlowCh"></mat-slider>
+          <span>{{goalSlowCh}} g</span>
+        </div>
+      </div>
+      <div class="half" *ngIf="doubleCh">
+        <div class="slider">
+          <span>Gyors</span>
+          <mat-slider name="quickCh" [step]="1" [tickInterval]="10" [thumbLabel]="true" [(ngModel)]="goalQuickCh"></mat-slider>
+          <span>{{goalQuickCh}} g</span>
+        </div>
+      </div>
     </div>
   </div>
 
+
   <div *ngIf="selectedMeal">
     <p class="heading1">100g tartalmaz</p>
-    <div>
+    <div class="input-panel">
       <mat-form-field [ngClass]="{'half': doubleCh}">
         <input name="mealSlowCh" matInput placeholder="Lassú szénhidrát" [(ngModel)]="slowChPer100">
       </mat-form-field>
@@ -39,13 +46,13 @@
     </div>
 
     <p class="heading1" *ngIf="resultSlowCh">Ennyit egyél</p>
-    <div class="result" *ngIf="resultSlowCh">
+    <div class="input-panel result" *ngIf="resultSlowCh">
       <mat-form-field [ngClass]="{'half': doubleCh}">
-        <input matInput disabled [value]="resultSlowCh">
+        <input matInput disabled placeholder="Lassú szénhidrát" [value]="resultSlowCh">
       </mat-form-field>
 
       <mat-form-field class="half" *ngIf="doubleCh">
-        <input matInput disabled [value]="resultQuickCh">
+        <input matInput disabled placeholder="Gyors szénhidrát" [value]="resultQuickCh">
       </mat-form-field>
     </div>
 
